@@ -1,0 +1,14 @@
+<mat-toolbar>
+  <span>Weatherman</span>
+</mat-toolbar>
+<div fxLayout="column" fxLayoutGap="0.5%">
+  <div fxFlex>
+    <app-map-module (newLatLngEvent)="setLatLng($event)"></app-map-module>
+  </div>
+  <div fxFlex>
+    <app-input-form [latLng]="sharedLatLng$" (newSourcesEvent)="setSources($event)" (newForecastEvent)="setSharedData($event)"></app-input-form>
+  </div>
+  <div class="table_wrapper" fxFlex>
+    <app-table-module [sources]="sharedSources$" [items]="sharedData$"></app-table-module>
+  </div>
+</div>

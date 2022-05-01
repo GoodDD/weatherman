@@ -1,0 +1,10 @@
+<div class="map_wrapper" *ngIf="apiLoaded | async">
+    <google-map
+    width="90%"
+    [zoom]="12"
+    [center]="center"
+    [options]="options"
+    (mapClick)="getLatLng($event)"
+    >
+    </google-map>
+</div>

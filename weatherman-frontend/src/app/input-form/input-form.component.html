@@ -1,0 +1,40 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm); addNewForecast(fd$)">
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutGap="6px">
+            <div fxFlex>
+                <mat-form-field appearance="fill">
+                    <mat-label>Latitude</mat-label>
+                    <input matInput formControlName="latitude">
+                </mat-form-field>
+            </div>
+            <div fxFlex>
+                <mat-form-field appearance="fill">
+                    <mat-label>Longitude</mat-label>
+                    <input matInput formControlName="longitude">
+                </mat-form-field>
+            </div>
+            <div fxFlex>
+                <mat-form-field appearance="fill">
+                    <mat-label>Enter a date range</mat-label>
+                    <mat-date-range-input [rangePicker]="picker">
+                        <input matStartDate placeholder="Start date" formControlName="start">
+                        <input matEndDate placeholder="End date" formControlName="end">
+                    </mat-date-range-input>
+                    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
+            </div>
+            <div fxFlex>
+                <button mat-raised-button color="primary">Get Forecast!</button>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="6px">
+            <div *ngFor="let source of sources; let i=index">
+                <div fxFlex>
+                    <mat-checkbox [checked]="source.value" (change)="onChangeEventFunc(source.name, $event)">{{ source.name }}</mat-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
